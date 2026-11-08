@@ -14,6 +14,8 @@ future {
     news
     events
 }
+superuser username = root
+superuser password = steed2026
 
 tasks =>
     -- git stuff
@@ -26,11 +28,12 @@ tasks =>
             -done-add README .gitignore .env 
             -done-add enviros for env parser
             -done-addd requirement.txt
-        --news
+        -done-news
             -done-add articles to project
-            -- add include article url
-            -- update articles
-
+            -done- add include article url
+            -done- update articles
+        --tickets
+            
     -- backe [faraze]
     
 

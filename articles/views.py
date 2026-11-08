@@ -1,6 +1,5 @@
 from django.views.generic import ListView, DetailView, View , FormView
 from django.views.generic.detail import SingleObjectMixin
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy ,reverse  # new
 from .models import Articles
@@ -35,7 +34,6 @@ class CommentPost(SingleObjectMixin, FormView):
     def form_valid(self, form):
         comment = form.save(commit=False)
         comment.article = self.object
-        comment.author = self.request.user
         comment.save()
         return super().form_valid(form)
 
@@ -45,7 +43,7 @@ class CommentPost(SingleObjectMixin, FormView):
         return reverse("article_detail", kwargs={"pk": article.pk})
 
 
-class ArticleDetailView(LoginRequiredMixin, View):
+class ArticleDetailView(View):
     def get(self, request, *args, **kwargs):
         view = CommentGet.as_view()
         return view(request, *args, **kwargs)
@@ -64,8 +62,6 @@ class ArticleUpdateView(UpdateView):
 
     template_name = "article_edit.html"
 
-    def test_func(self):
-        return self.request.user.is_staff
 
 
 class ArticleDeleteView(DeleteView):  # new
@@ -73,8 +69,6 @@ class ArticleDeleteView(DeleteView):  # new
     template_name = "article_delete.html"
     success_url = reverse_lazy("article_list")
 
-    def test_func(self):
-        return self.request.user.is_staff
 
 
 class ArticleCreateView(CreateView):
@@ -87,5 +81,3 @@ class ArticleCreateView(CreateView):
     template_name = "article_create.html"
     success_url = reverse_lazy("article_list")
 
-    def test_func(self):
-        return self.request.user.is_staff

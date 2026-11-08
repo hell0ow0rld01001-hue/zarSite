@@ -1,10 +1,10 @@
 {% extends "base.html"%}
-{% load crispy_forms_tags %}
 {% block content %}
 <h1>Crete Article</h1>
 <form action="" method="post">
+
     {% csrf_token %}
-    {{form|crispy}}
+     {{ form.as_p }}
     <button class="btn btn-success ms-2" type="submit"> Make </button>
 </form>
 {%endblock content%}

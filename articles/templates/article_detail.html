@@ -1,6 +1,6 @@
 <!-- templates/article_detail.html -->
 {% extends "base.html" %}
-{% load crispy_forms_tags %} <!-- new! -->
+
 {% block content %}
 <div class="article-entry">
     <h2>{{ object.title }}</h2>
@@ -15,17 +15,19 @@
 <hr>
 
 <h4>Add a comment</h4>
-<form action="" method="post">{% csrf_token %}
-    {{ form|crispy }}
+<form action="" method="post">
+    {% csrf_token %}
+     {{ form.as_p }}
+
     <button class="btn btn-success ms-2" type="submit">Save</button>
 </form>
 
 <div>
-    {% if object.author.pk == request.user.pk %}
+
     <p><a href="{% url 'article_edit' object.pk %}">Edit</a>
         <a href="{% url 'article_delete' object.pk %}">Delete</a>
     </p>
-    {% endif %}
+
     <p>Back to <a href="{% url 'article_list' %}">All Articles</a>.</p>
 </div>
 {% endblock content %}

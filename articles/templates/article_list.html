@@ -28,19 +28,7 @@
                 {% endif %}
             </div>
 
-            <div class="card-footer">
-                {% for comment in article.comment_set.all %}
-                    <p>
-                        <span class="fw-bold">
-                            {{ comment.author }} &middot;
-                        </span>
-                        {{ comment }}
-                    </p>
-                {% empty %}
-                    <p class="text-muted">No comments yet.</p>
-                {% endfor %}
-                <a href="{{ article.get_absolute_url }}">New Comment</a>
-            </div>
+
         </div>
 
         <br>
