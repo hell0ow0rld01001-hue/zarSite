@@ -26,6 +26,7 @@ urlpatterns = [
     path("", index_view, name="index"),
     path('admin/', admin.site.urls),
     path('articles/', include("articles.urls")),
+    path("events/", include("events.urls")),
     path("api/chat/", chat_api, name="chat_api")
 ]
 
