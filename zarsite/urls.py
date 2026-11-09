@@ -16,10 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path , include
+from .views import index_view, chat_api
+from django.conf.urls.static import static
+from django.conf import settings
 
 import articles
 
 urlpatterns = [
+    path("", index_view, name="index"),
     path('admin/', admin.site.urls),
     path('articles/', include("articles.urls")),
+    path("api/chat/", chat_api, name="chat_api")
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

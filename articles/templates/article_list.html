@@ -22,7 +22,7 @@
             <div class="card-body">
                 {{ article.body }}
 
-                {% if article.author.pk == request.user.pk %}
+                {% if user.is_authenticated and article.author == user.username %}
                     <a href="{% url 'article_edit' article.pk %}">Edit</a>
                     <a href="{% url 'article_delete' article.pk %}">Delete</a>
                 {% endif %}

@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block title %}ZarSite | محیط توسعه{% endblock %}
+
+{% block extra_head %}
+<style>
+  .placeholder-wrap {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fafafa;
+    background-image: radial-gradient(#d4d4d8 1px, transparent 1px);
+    background-size: 24px 24px;
+    padding: 24px;
+    text-align: center;
+  }
+
+  .placeholder-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid #e4e4e7;
+    border-radius: 20px;
+    padding: 48px 40px;
+    max-width: 480px;
+    width: 100%;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fef3c7;
+    color: #92400e;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 20px;
+  }
+
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    background: #d97706;
+    border-radius: 50%;
+  }
+
+  .placeholder-card h1 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #18181b;
+    margin: 0 0 10px;
+    letter-spacing: -0.3px;
+  }
+
+  .placeholder-card p {
+    font-size: 14px;
+    color: #71717a;
+    line-height: 1.8;
+    margin: 0 0 28px;
+  }
+
+  .action-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary-minimal {
+    background: #18181b;
+    color: #fafafa;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .btn-primary-minimal:hover {
+    background: #27272a;
+  }
+
+  .btn-secondary-minimal {
+    background: white;
+    color: #3f3f46;
+    border: 1px solid #e4e4e7;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .btn-secondary-minimal:hover {
+    border-color: #a1a1aa;
+    color: #18181b;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="placeholder-wrap">
+  <div class="placeholder-card">
+    <div class="status-badge">
+      <span class="status-dot"></span>
+      <span>Frontend Placeholder &bull; نسخه آزمایشی</span>
+    </div>
+
+    <h1>فرانت اند نمایشی lol</h1>
+    <p>
+    ایشالا که خیره
+    </p>
+    <p>
+    یادتون باشه کلید جمینای رو توی .env قرار بدید
+    و وی پی انی هم بزنید که بتونه تحریم گوگل رو رد کنه برای چت با بات
+    </p>
+
+    <div class="action-group">
+      <button class="btn-primary-minimal" onclick="document.getElementById('zar-chat-toggle').click()">
+        تست دستیار هوشمند
+      </button>
+      <a href="{% url 'article_list' %}" class="btn-secondary-minimal">
+        بخش مقالات
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}
