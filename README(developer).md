@@ -35,6 +35,12 @@ tasks =>
         --tickets
             
     -- backe [faraze]
+        -done-basic AI chatbot implementation
+        -done-some bug fixes 
+        -done-updated requirements.txt and .igitinore
+        -done-placeholder frontend implementation for testing (index and base.html)
+        -done-some AI refinements for more speed and error handling
+        -done-deleted main.py boilderplate xd
     
 
     -- front [zahra]
