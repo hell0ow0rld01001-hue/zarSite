@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block title %}{{ event.title }}رویدادهای گروه زر{% endblock %}
+
+{% block extra_head %}
+<style>
+  .event-wrap {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fafafa;
+    background-image: radial-gradient(#d4d4d8 1px, transparent 1px);
+    background-size: 24px 24px;
+    padding: 32px 16px;
+  }
+
+  .event-card {
+    background: #ffffff;
+    border: 1px solid #e4e4e7;
+    border-radius: 20px;
+    padding: 36px 32px;
+    max-width: 440px;
+    width: 100%;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.06);
+    text-align: center;
+  }
+
+  .event-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #18181b;
+    margin-bottom: 8px;
+  }
+
+  .event-desc {
+    font-size: 13.5px;
+    color: #71717a;
+    line-height: 1.8;
+    margin-bottom: 24px;
+  }
+
+  .qr-box {
+    display: inline-block;
+    padding: 14px;
+    background: #fafafa;
+    border: 1px dashed #d4d4d8;
+    border-radius: 16px;
+    margin-bottom: 8px;
+  }
+
+  .qr-box img {
+    width: 190px;
+    height: 190px;
+    display: block;
+  }
+
+  .qr-caption {
+    font-size: 12px;
+    color: #a1a1aa;
+    margin-bottom: 24px;
+    direction: ltr;
+  }
+
+  .event-form {
+    text-align: right;
+    border-top: 1px solid #f4f4f5;
+    padding-top: 20px;
+  }
+
+  .event-form label {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #3f3f46;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .event-form input {
+    width: 100%;
+    border: 1px solid #e4e4e7;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 13.5px;
+    margin-bottom: 14px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .event-form input:focus {
+    border-color: #18181b;
+  }
+
+  .event-submit {
+    width: 100%;
+    background: #18181b;
+    color: #fafafa;
+    border: none;
+    padding: 11px;
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .event-submit:hover {
+    background: #27272a;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="event-wrap">
+  <div class="event-card">
+    <h1 class="event-title">{{ event.title }}</h1>
+    {% if event.description %}
+      <p class="event-desc">{{ event.description }}</p>
+    {% endif %}
+
+    <div class="qr-box">
+      <img src="{{ qr_data_uri }}" alt="QR Code for {{ event.title }}" />
+    </div>
+    <div class="qr-caption">{{ current_url }}</div>
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert {% if message.tags == 'success' %}alert-success{% else %}alert-danger{% endif %} py-2 small">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    <form method="post" class="event-form">
+      {% csrf_token %}
+      <div>
+        <label for="full_name">نام و نام خانوادگی</label>
+        <input type="text" id="full_name" name="full_name" placeholder="مثلاً: علی رضایی" required />
+      </div>
+
+      <div>
+        <label for="phone_number">شماره تماس</label>
+        <input type="tel" id="phone_number" name="phone_number" placeholder="09123456789" dir="ltr" required />
+      </div>
+
+      <button type="submit" class="event-submit">ثبت اطلاعات در رویداد</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
